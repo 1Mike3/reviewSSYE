@@ -1,0 +1,18 @@
+services:
+  cat-service:
+    build: ./secure-cat-service
+    ports:
+      - "5501:5501"
+    environment:
+      - PORT=5501
+      - AUTH_SERVICE_URL=http://auth-service:5500 
+    volumes:
+      - ./secure-cat-service/images:/usr/src/app/images
+    depends_on:
+      - auth-service
+  auth-service:  
+    build: ./auth-service
+    ports:
+      - "5500:5500"
+    volumes:
+      - ./db:/app/data

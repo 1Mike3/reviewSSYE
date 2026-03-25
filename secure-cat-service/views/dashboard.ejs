@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cat Service - Dashboard</title>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            background-color: #c0c0c0;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #000080;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-bottom: 2px outset #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 {
+            font-size: 22px;
+            margin: 5px 0;
+        }
+        .logout-btn {
+            background-color: #c0c0c0;
+            color: #000000;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 14px;
+            border: 2px outset #ffffff;
+            padding: 4px 15px;
+            cursor: pointer;
+        }
+        .logout-btn:active {
+            border-style: inset;
+        }
+        .container {
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .card {
+            background-color: #e0e0e0;
+            border: 2px outset #ffffff;
+            padding: 8px;
+            text-align: center;
+            width: 220px;
+        }
+        img {
+            max-width: 100%;
+            height: 160px;
+            width: 100%;
+            object-fit: cover;
+            border: 1px solid #808080;
+        }
+        a {
+            color: #0000ee;
+            font-size: 13px;
+            word-wrap: break-word;
+        }
+        a:visited {
+            color: #551a8b;
+        }
+        .empty-state {
+            width: 100%;
+            text-align: center;
+            color: #000000;
+            font-size: 16px;
+            margin-top: 30px;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #808080;
+            border-bottom: 1px solid #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Welcome, <%= username %>!</h1>
+        <form action="/logout" method="POST" style="margin: 0;">
+            <button type="submit" class="logout-btn">Logout</button>
+        </form>
+    </div>
+
+    <div class="container">
+        <hr>
+        <p><b>Cat Image Gallery</b></p>
+
+        <div class="gallery">
+            <% if (images.length === 0) { %>
+                <div class="empty-state">
+                    <p>No cats found.</p>
+                </div>
+            <% } %>
+
+            <% images.forEach(function(image) { %>
+                <div class="card">
+                    <a href="/cat/<%= image %>" target="_blank">
+                        <img src="/cat/<%= image %>" alt="<%= image %>">
+                        <br>
+                        <span><%= image %></span>
+                    </a>
+                </div>
+            <% }); %>
+        </div>
+        <hr>
+    </div>
+</body>
+</html>

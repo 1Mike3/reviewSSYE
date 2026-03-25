@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cat Service - Register</title>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            background-color: #c0c0c0;
+            margin: 0;
+            padding: 0;
+        }
+        table.main {
+            width: 400px;
+            margin: 80px auto;
+            border: 2px outset #ffffff;
+            background-color: #e0e0e0;
+            cellpadding: 10;
+        }
+        td { padding: 8px; }
+        h2 {
+            font-size: 24px;
+            color: #000080;
+            text-align: center;
+            margin: 10px 0;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 4px;
+            border: 2px inset #ffffff;
+            background-color: #ffffff;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        label {
+            font-weight: bold;
+            color: #000000;
+        }
+        input[type="submit"], button {
+            padding: 6px 20px;
+            border: 2px outset #ffffff;
+            background-color: #d4d0c8;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        input[type="submit"]:active, button:active {
+            border-style: inset;
+        }
+        .error {
+            background-color: #ffcccc;
+            border: 1px solid #cc0000;
+            color: #cc0000;
+            padding: 6px;
+            margin: 8px 0;
+            font-size: 13px;
+        }
+        .requirements {
+            border: 1px solid #000000;
+            padding: 6px;
+            margin: 8px 0;
+        }
+        a {
+            color: #0000ee;
+        }
+        a:visited {
+            color: #551a8b;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #808080;
+            border-bottom: 1px solid #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <table class="main" cellpadding="10" cellspacing="0">
+        <tr>
+            <td colspan="2" style="background-color: #000080; color: #ffffff; text-align: center;">
+                <h2 style="color: #ffffff; margin: 5px 0;">Cat Service - Register</h2>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <hr>
+
+                <div class="requirements"><b>Requirements:</b><br>The username must be 3-100 characters long and only contain uppercase letters, lowercase letters, numbers and underscores.<br>The password must be at least 8 characters long.</div>
+
+                <% if (error) { %>
+                    <div class="error"><%= error %></div>
+                <% } %>
+
+                <form action="/register" method="POST">
+                    <table width="100%" cellpadding="4" cellspacing="0">
+                        <tr>
+                            <td><label>Username:</label></td>
+                            <td><input type="text" name="username" pattern="[a-zA-Z0-9_]{1,100}" title="Username can only contain letters, numbers, and underscores, and must be at most 100 characters long." required></td>
+                        </tr>
+                        <tr>
+                            <td><label>Password:</label></td>
+                            <td><input type="password" name="password" required></td>
+                        </tr>
+                        <tr>
+                            <td><label>Repeat Password:</label></td>
+                            <td><input type="password" name="passwordRepeat" required></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: center;">
+                                <button type="submit">Register</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+
+                <script src="/js/form-loading.js"></script>
+                <hr>
+
+                <p style="text-align: center; font-size: 13px;">
+                    Already have an account? <a href="/login">Login here!</a>
+                </p>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

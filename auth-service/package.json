@@ -1,0 +1,23 @@
+{
+  "name": "ssye-auth-server",
+  "version": "0.0.0",
+  "description": "Cheap OAuth2 knock-off",
+  "main": "index.js",
+  "scripts": {
+    "start": "set JWT_PRIVATE_KEY=./private.key && set JWT_PUBLIC_KEY=./public.key && set USER_PASS_PEPPER=123 && node index.js",
+    "build": "docker build -t ssye_auth_server:0.1 ."
+  },
+  "keywords": [
+    "Auth",
+    "OAuth",
+    "Microserver"
+  ],
+  "author": "Paul Panosch",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "better-sqlite3": "^12.6.2",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3"
+  }
+}
